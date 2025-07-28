@@ -1,0 +1,26 @@
+(function() {
+    var uiAction = new GlideRecord('sys_ui_action');
+    uiAction.initialize();
+    uiAction.name = 'Custom List Button'; // Button Label
+    uiAction.table = 'incident'; // Replace with your target table
+    uiAction.action_name = 'custom_list_button'; // Internal name
+    uiAction.order = 100; // Order of appearance
+    uiAction.list_action = true; // Ensures it appears in List View
+    uiAction.form_action = false;
+    uiAction.form_button = false;
+    uiAction.list_button = true;
+    uiAction.show_insert = true;
+    uiAction.show_update = true;
+    uiAction.active = true;
+    uiAction.condition = 'true'; // You can customize this as needed
+    uiAction.script = 
+        "var selected = g_list.getChecked();\n" +
+        "if (!selected) {\n" +
+        "   alert('Please select at least one record.');\n" +
+        "} else {\n" +
+        "   alert('Selected sys_ids: ' + selected);\n" +
+        "   // Add your logic here\n" +
+        "}";
+    uiAction.insert();
+    gs.info('List UI Action created successfully');
+})();
